@@ -3,10 +3,10 @@
     "version": "1.0.0",
     "main": "generateLeaderboard.js",
     "scripts": {
-      "generate": "node generateLeaderboard.js"
+        "generate": "node generateLeaderboard.js"
     },
     "dependencies": {
-      "@octokit/rest": "^18.0.0"
+        "@octokit/rest": "^18.0.0",
+        "markdown-cli": "^1.5.1"
     }
-  }
-  
+}
