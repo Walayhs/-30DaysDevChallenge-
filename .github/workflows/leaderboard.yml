@@ -1,0 +1,37 @@
+name: Update Leaderboard
+
+on:
+  schedule:
+    - cron: '30 18 * * *'  # Runs every day at 18:30 UTC, which is midnight IST
+  workflow_dispatch:
+
+jobs:
+  update-leaderboard:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate leaderboard
+        run: npm run generate
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add LEADERBOARD.md
+          git commit -m 'Update leaderboard'
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

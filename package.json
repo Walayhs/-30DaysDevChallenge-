@@ -1,0 +1,12 @@
+{
+    "name": "contribution-leaderboard",
+    "version": "1.0.0",
+    "main": "generateLeaderboard.js",
+    "scripts": {
+      "generate": "node generateLeaderboard.js"
+    },
+    "dependencies": {
+      "@octokit/rest": "^18.0.0"
+    }
+  }
+  
