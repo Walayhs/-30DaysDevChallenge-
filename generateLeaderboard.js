@@ -5,8 +5,8 @@ const octokit = new Octokit({ auth: process.env.GH_TOKEN });
 
 async function generateLeaderboard() {
   const { data } = await octokit.repos.listContributors({
-    owner: "your-github-username",
-    repo: "your-repository-name"
+    owner: "Walayhs",
+    repo: "-30DaysDevChallenge-"
   });
 
   let leaderboard = "# Contribution Leaderboard\n\n";
