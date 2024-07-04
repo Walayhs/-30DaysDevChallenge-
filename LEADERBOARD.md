@@ -10,4 +10,5 @@
 8. tinawankhede - 6 contributions
 9. Surajh09 - 5 contributions
 10. TorusAg - 2 contributions
-11. Shlokwankhade - 1 contributions
+11. github-actions[bot] - 1 contributions
+12. Shlokwankhade - 1 contributions
