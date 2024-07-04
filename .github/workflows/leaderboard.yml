@@ -1,8 +1,11 @@
-name: Update Leaderboard
+name: Deploy Leaderboard
 
 on:
   schedule:
     - cron: '*/5 * * * *'  # Runs every 5 minutes
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -26,12 +29,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - name: Commit and push changes
+      - name: Convert Markdown to HTML
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add LEADERBOARD.md
-          git commit -m 'Update leaderboard'
-          git push
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          npx markdown-cli LEADERBOARD.md > leaderboard.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # Adjust this to your HTML file's location
